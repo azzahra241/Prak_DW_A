@@ -1,0 +1,209 @@
+/* --- GLOBAL RESET & FONDASI --- */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {font-size: 100%;}
+body {
+  margin: 0;
+  font-family: 'Montserrat', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6rem;
+  background-color: #92c0ee;
+  color: #04396e;
+}
+
+/* Membuat kontainer utama untuk layout */
+.main-container {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 1rem;
+}
+
+/* --- LAYOUT UTAMA (MOBILE FIRST) --- */
+.main-container {
+  display: grid;
+  grid-template-columns: 1fr; /* Default: 1 kolom untuk mobile */
+  gap: clamp(1.5rem, 4vw, 3rem);
+}
+
+h1, h2 {
+  text-align: center;
+  margin-bottom: 0 0 1.5rem;
+  line-height: 1.25;
+  font-size: clamp(2rem, 1rem + 5vw, 3.5rem);
+  text-align: center;
+}
+
+form, article {
+  background-color: #FCF9EA;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* --- STYLING FORMULIR --- */
+fieldset {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+legend {
+  font-weight: bold;
+  padding: 0 0.5rem;
+}
+
+form label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+}
+
+form input[type="text"],
+form input[type="number"],
+form input[list],
+form textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+/* --- MEDIA QUERIES UNTUK RESPONSIVENESS --- */
+@media (min-width: 992px) {
+  .main-container {
+    grid-template-columns: 1fr 1.5fr;
+  }
+}
+
+/* --- STYLING TOMBOL & INTERAKTIVITAS --- */
+button {
+  width: 100%;
+  padding: 1rem;
+  border: none;
+  border-radius: 4px;
+  background-color: #e67e22;
+  color: white;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+button:hover {
+  background-color: #d35400;
+}
+
+form input:focus, form textarea:focus {
+  outline: none;
+  border-color: #e67e22;
+  box-shadow: 0 0 5px rgba(230, 126, 34, 0.5);
+}
+
+/* Styling tambahan untuk pratinjau */
+article img, article video {
+  max-width: 100%;
+  height: auto;
+  border-radius: 4px;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+/* --- BONUS: Gaya Keren untuk <details> & <summary> --- */
+details {
+  margin-top: 1.5rem;
+  border: 2px solid #e67e22;
+  border-radius: 10px;
+  background-color: #fffaf2;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+  transition: all 0.3s ease-in-out;
+}
+
+details[open] {
+  background-color: #fff3e0;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Tombol summary */
+summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  padding: 0.8rem 1rem;
+  background: linear-gradient(135deg, #e67e22, #f39c12);
+  color: white;
+  font-weight: 600;
+  font-size: 1rem;
+  border-radius: 8px;
+  list-style: none;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+/* Hover & klik efek */
+summary:hover {
+  background: linear-gradient(135deg, #d35400, #f39c12);
+  transform: translateY(-2px);
+}
+
+/* Tambahkan ikon panah ▼ otomatis */
+summary::after {
+  content: '▾';
+  font-size: 1.2rem;
+  transition: transform 0.3s ease;
+}
+
+/* Putar ikon saat dibuka */
+details[open] summary::after {
+  transform: rotate(-180deg);
+}
+
+/* Isi dalam details */
+details ul {
+  margin: 0;
+  padding: 1rem 1.5rem;
+  background-color: #fff;
+  border-top: 1px solid #f1c40f;
+  animation: slideDown 0.4s ease;
+}
+
+/* Efek animasi buka */
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* --- BONUS: Styling untuk <meter> --- */
+meter {
+  width: 100%;
+  height: 20px;
+  border-radius: 10px;
+  background: #eee;
+}
+
+meter::-webkit-meter-bar {
+  border-radius: 10px;
+  background: #ddd;
+}
+
+meter::-webkit-meter-optimum-value {
+  background: linear-gradient(90deg, #f39c12, #e67e22);
+  border-radius: 10px;
+}
+
+meter::-webkit-meter-suboptimum-value {
+  background: linear-gradient(90deg, #f1c40f, #e67e22);
+}
+
+meter::-webkit-meter-even-less-good-value {
+  background: #e74c3c;
+}
