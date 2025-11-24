@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mood Playlist Generator</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
+        html{font-size: 100%;}
+        body {
+            margin: 0;
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            background-color: #f0f4f8;
+            color: #222;
+            line-height: 1.6rem;
+        }
+
+        header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 4rem 2rem 2rem;
+            background-color: #4a90e2;
+            color: #ffff;
+        }
+
+        header h1 {
+            font-size: clamp(2rem, 1rem + 5vw, 3.5rem);
+            line-height: 1.25;
+            text-align: center;
+            margin: 0 0 1.5rem 0;
+            white-space: normal;
+            word-break: break-word;
+            max-width: 90%;
+        }
+
+        header p {
+            margin-top: 1rem;
+            font-size: clamp(1rem, 0.8rem + 2vw, 1.5rem);
+        }
+
+        .main-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: clamp(1.5rem, 4vw, 3rem);
+            padding: 1rem;
+            max-width: 1200px;
+            margin: 2rem auto;
+        }
+
+        form {
+            background-color: #fff;
+            padding: 2.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        fieldset {
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            padding: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        legend {
+            font-weight: bold;
+            font-size: 1.5rem;
+            padding: 0 0.5rem;
+            margin-bottom: 1.5rem;
+            width: auto;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            margin-top: 1rem;
+            font-size: 1.1rem;
+        }
+
+        input[type="text"], select, textarea {
+            width: 100%;
+            padding: 0.75rem;
+            margin-bottom: 1rem;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            font-size: 1rem;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .preview-card {
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: background-color 0.4s ease;
+        }
+
+        .preview-card h2 {
+            font-size: clamp(1.5rem, 1rem + 2vw, 2.5rem);
+            margin-bottom: 0.5rem;
+        }
+
+        .preview-card p {
+            margin-top: 1.5rem;
+            font-size: 1rem;
+        }
+
+        @media (min-width: 800px) {
+            .main-container {
+            grid-template-columns: 1fr 1fr;
+            } 
+        }
+
+        footer {
+            text-align: center;
+            padding: 1rem;
+            background-color: #4a90e2;
+            color: #ffff;
+            margin-top: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Mood Playlist Generator</h1>
+        <p>Buat playlist sesuai hatimu, secara real-time!</p>
+    </header>
+
+    <main class="main-container">
+        <form id="playlist-form">
+            <fieldset>
+                <legend>Isi Data Playlist</legend>
+
+                <label for="playlist-name" class="form-label">Nama Playlist</label>
+                <input type="text" id="playlist-name" class="form-control" placeholder="Contoh: Morning Vibes" />
+
+                <label for="playlist-mood" class="form-label">Mood</label>
+                <select id="playlist-mood" class="form-select">
+                    <option value="">  Pilih Suasana Hati  </option>
+                    <option value="happy">😊 Happy</option>
+                    <option value="chill">😎 Chill</option>
+                    <option value="sad">😞 Sad</option>
+                    <option value="energetic">🔥 Energetic</option>
+                </select>
+
+                <label for="playlist-desc" class="form-label">Deskripsi Playlist</label>
+                <textarea id="playlist-desc" rows="3" class="form-control" placeholder="Tuliskan deskripsi singkat playlist kamu"></textarea>
+            </fieldset>
+        </form>
+
+        <section id="preview" class="preview-card">
+            <h2 id="preview-name">Judul Playlist</h2>
+            <p id="preview-mood">Mood</p>
+            <p id="preview-desc">Deskripsi playlist kamu akan muncul di sini</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2025 Mood Playlist Generator | Dibuat oleh Az-Zahra Putri</p>
+    </footer>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        console.log("🎵 Halo dari script.js! File berhasil terhubung");
+
+        const inputNama = document.querySelector("#playlist-name");
+        const inputMood = document.querySelector("#playlist-mood");
+        const inputDeskripsi = document.querySelector("#playlist-desc");
+
+        const previewNama = document.querySelector("#preview-name");
+        const previewMood = document.querySelector("#preview-mood");
+        const previewDeskripsi = document.querySelector("#preview-desc");
+        const previewCard = document.querySelector("#preview");
+
+        console.log(inputNama);
+        console.log(previewNama);
+        console.log(inputMood);
+        console.log(previewMood);
+        console.log(inputDeskripsi);
+        console.log(previewDeskripsi);
+        console.log(previewCard);
+
+        inputNama.addEventListener("input", function () {
+            const teksNama = inputNama.value;
+            previewNama.textContent = teksNama || "Judul Playlist";
+        });
+
+        inputDeskripsi.addEventListener("input", function () {
+            console.log("✏️ Deskripsi sedang diketik:");
+        });
+
+        inputDeskripsi.addEventListener("input", function () {
+            const teksDeskripsi = inputDeskripsi.value;
+
+            if (teksDeskripsi === "") {
+                previewDeskripsi.textContent = "Deskripsi playlist kamu akan muncul di sini";
+            } else {
+                previewDeskripsi.textContent = teksDeskripsi;
+            }
+        });
+
+
+        inputMood.addEventListener("input", function () {
+            const mood = inputMood.value;
+            let warna = "#ffffff";
+            let moodText = "—";
+
+            switch (mood) {
+                case "happy":
+                    warna = "#f0d97fff";
+                    moodText = "😊 Happy";
+                    break;
+                case "chill":
+                    warna = "#83d1d4";
+                    moodText = "😎 Chill";
+                    break;
+                case "sad":
+                    warna = "#588292";
+                    moodText = "😞 Sad";
+                    break;
+                case "energetic":
+                    warna = "#fbad3fff";
+                    moodText = "🔥 Energetic";
+                    break;
+            }
+
+            previewMood.textContent = moodText;
+            previewCard.style.backgroundColor = warna;
+        });
+    </script>
+</body>
+</html>
